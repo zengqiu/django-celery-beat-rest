@@ -5,7 +5,7 @@ RESTful API for django-celery-beat.
 
 # Usage
 
-Add `'celery_beat_rest'` in your project's `settings.py`:
+Add `celery_beat_rest` in your project's `settings.py`:
 
 ```
 INSTALLED_APPS = [
