@@ -37,6 +37,11 @@ class IntervalScheduleFilter(filters.FilterSet):
 
 
 class PeriodicTaskFilter(filters.FilterSet):
+    name = filters.CharFilter(lookup_expr='icontains')
+    task = filters.CharFilter(lookup_expr='icontains')
+    start_time = filters.DateTimeFromToRangeFilter()
+    last_run_at = filters.DateTimeFromToRangeFilter()
+
     class Meta:
         model = PeriodicTask
-        fields = ['name', 'enabled', 'one_off', 'task', 'start_time', 'last_run_at']
+        fields = ['enabled', 'one_off']
