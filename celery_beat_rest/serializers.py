@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from timezone_field.rest_framework import TimeZoneSerializerField
 from django_celery_beat.models import (
     ClockedSchedule, SolarSchedule, SOLAR_SCHEDULES, CrontabSchedule, IntervalSchedule, PeriodicTask
 )
+from .fields import TimeZoneSerializerChoiceField
 
 
 class ClockedScheduleSerializer(serializers.ModelSerializer):
@@ -20,7 +20,7 @@ class SolarScheduleSerializer(serializers.ModelSerializer):
 
 
 class CrontabScheduleSerializer(serializers.ModelSerializer):
-    timezone = TimeZoneSerializerField(use_pytz=False)
+    timezone = TimeZoneSerializerChoiceField(use_pytz=False)
     human_readable = serializers.ReadOnlyField()
 
     class Meta:
