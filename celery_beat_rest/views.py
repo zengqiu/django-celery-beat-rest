@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from rest_framework.serializers import ChoiceField
+from rest_framework.serializers import ChoiceField, ListSerializer
 from rest_framework.filters import OrderingFilter
 from django_filters import rest_framework as filters
 from django_celery_beat.admin import TaskSelectWidget
@@ -54,7 +54,14 @@ class PeriodicTaskViewSet(viewsets.ModelViewSet):
 
     def get_serializer(self, *args, **kwargs):
         serializer = super(PeriodicTaskViewSet, self).get_serializer(*args, **kwargs)
-        serializer.fields['task'] = ChoiceField(choices=TaskSelectWidget().choices[1:])
+
+        if isinstance(serializer, ListSerializer):
+            fields = serializer.child.fields
+        else:
+            fields = serializer.fields
+
+        fields['task'] = ChoiceField(choices=TaskSelectWidget().choices[1:])
+
         return serializer
 
     def get_serializer_class(self):
