@@ -47,4 +47,4 @@ class PeriodicTaskListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PeriodicTask
-        fields = ['name', 'enabled', 'scheduler', 'interval', 'start_time', 'last_run_at', 'one_off']
+        fields = ['id', 'name', 'enabled', 'scheduler', 'interval', 'start_time', 'last_run_at', 'one_off']
