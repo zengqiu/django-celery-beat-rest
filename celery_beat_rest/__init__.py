@@ -1,6 +1,6 @@
-from pkg_resources import DistributionNotFound, get_distribution
+from importlib.metadata import version, PackageNotFoundError
 
 try:
-    __version__ = get_distribution('django-celery-beat-rest').version
-except DistributionNotFound:
+    __version__ = version('django-celery-beat-rest')
+except PackageNotFoundError:
     pass
